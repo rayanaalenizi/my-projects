@@ -1,0 +1,131 @@
+body {
+    background-color: #923b3293;
+    color: #ffffff;
+    margin: 0;
+    /* display: flex; */
+    min-height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    border: transparent;
+    position: relative;
+    letter-spacing: 4.5px;
+    font-size: 10px;
+    font-family: inherit;
+    color: #fff;
+    /* width: 6em; */
+    line-height: 2em;
+    text-align: center;
+    background: linear-gradient(90deg, #a36361, #c091a88c);
+    background-size: 300%;
+    border-radius: 10px;
+    margin: 10px auto;
+    margin-bottom: 0px;
+    display: block;
+    cursor: pointer;
+    transition: background 0.3s;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+}
+button:hover {
+    background-position: right;
+    background: linear-gradient(90deg, #b6aa9b46, #99627d);
+    transform: translateY(-5px);
+    box-shadow: 0 2px 10px rgba(190, 188, 188, 0.5);
+}
+
+p{
+    margin: 5%;
+    color: #e7e7e7;
+    text-shadow: 0px 0px 10px #000000;
+    border-radius: 20px;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+    /* background-color: aqua; */
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    /* padding-left: 33%; */
+    /* padding-right: 10%; */
+}
+
+h1{
+    margin: 5%;
+    color: #e7e7e7;
+    text-shadow: 0px 0px 10px #000000;
+    border-radius: 20px;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+    /* background-color: aqua; */
+    align-self: center;
+    justify-content: center;
+    text-align: center;
+    /* padding-left: 33%;
+    padding-right: 10%; */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    p {
+        font-size: 1.8em;
+    }
+    .er
+    .error-msg {
+        padding: 10%;
+        margin: 10px;
+    }
+
+    button {
+        width: 90%;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+    p {
+        font-size: 1.2em;
+    }
+    .er
+    .error-msg {
+        padding: 5%;
+        margin: 5px;
+    }
+
+    button {
+        width: 90%;
+        font-size:12px;
+    }
+}
+
+@media (max-width: 255px) {
+    h1 {
+        font-size: 1.2em;
+    }
+    p {
+        font-size: 1.2em;
+    }
+    .error-msg {
+        padding: 5%;
+        margin: 2px;
+    }
+    button {
+        width: 90%;
+        font-size: 12px;
+    }
+
+}

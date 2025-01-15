@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Name}} - Artist Details</title>
+    <link rel="stylesheet" href="/static/details.css">
+</head>
+<body>
+   
+    <div class="container">
+    <div class="artist-details">
+        <div class="alldata">
+            <div class="details">
+                <button class="back-button" onclick="window.history.back();">&#8592; Back</button>
+                <img src="{{.Image}}" alt="{{.Name}} Image">
+        <h1>{{.Name}}</h1>
+
+        <!-- Display creation message dynamically -->
+        {{if gt (len .Members) 1}}
+            <p>{{.Name}} is a band formed in {{.CreationDate}}.</p>
+        {{else}}
+            <p>{{.Name}} is a solo artist formed in {{.CreationDate}}.</p>
+        {{end}}
+
+        <!-- Display total members -->
+        <p><strong>Total Members:</strong> {{len .Members}}</p>
+
+        <!-- Display first album release date -->
+        <p><strong>The first album was released on:</strong> {{.FirstAlbum}}</p>
+
+        <p><strong>Members:</strong> {{range .Members}}{{.}}, {{end}}</p>
+            </div>
+        
+<div class="locations">
+        <h2>Concert Locations</h2>
+        <ul>
+            {{range $location, $dates := .DatesLocations}}
+                <li>
+                    <div class="locationanddate">
+
+                   <div class="locationContainer"> <span class="location">In {{$location}}:</span></div>
+                   <div class="dateContainer"> <ul>
+                        {{range $dates}}
+                            <li class="date">{{.}}</li> <!-- Fixed to use {{.}} -->
+                        {{end}}
+                    </ul>
+                </div>
+                </div>
+                </li>
+            {{end}}
+        </ul>
+</div>
+</div>
+    </div>
+</div>
+</body>
+</html>

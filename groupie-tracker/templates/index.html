@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists List</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content Section -->
+        <div class="main-content">
+            <div class="midcont">
+                <div class="container1">
+                    <div class="toptitle">
+                        <h1>Groupie Trackers</h1>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="container2">
+                <h2>Artists</h2>
+                <ul>
+                {{range .}}
+                <li>
+                    <img src="{{ .Image }}" alt="{{ .Name }}" class="card-image">
+                    <div class="cardDetals">
+                        <div class="nameandlike">
+                            <div class="nametitle"> <span class="artist-name">{{.Name}}</span></div>
+                            <div class="likebtn"><i class="fa fa-heart like-icon" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="albumdetails">
+                            <div>
+                                <span class="titleF">First Album:</span> <span class="album">{{.FirstAlbum}}</span>
+                            </div>
+                            <div class="members">
+                                <span class="titleF">Members:</span> 
+                              <span class="membersName">{{range .Members}}{{.}}, {{end}}</span>  
+                            </div>
+                        </div>
+                        <div class="btndiv">
+                            <button class="detailsbtn"><a href="/artist/{{ .ID }}">Details</a></button>
+                          </div>
+                    </div>
+                </li>
+                {{end}}
+            </ul>
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <div class="rightcontAsci">
+                <div class="asciidiv">
+                    {{range .}}
+                    <img src="{{ .Image }}" alt="{{ .Name }}">
+                    {{ end }}
+                </div>
+            </div>
+
+            <div class="rightcont">
+                <div class="calendar">
+                    <div class="header">
+                        <h2 class="month">Calendar</h2>
+                    </div>
+                    <div class="days">
+                        <div class="day">Sun</div>
+                        <div class="day">Mon</div>
+                        <div class="day">Tue</div>
+                        <div class="day">Wed</div>
+                        <div class="day">Thu</div>
+                        <div class="day">Fri</div>
+                        <div class="day">Sat</div>
+                        <div class="day"></div>
+                        <div class="day"></div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day">10</div>
+                        <div class="day">11</div>
+                        <div class="day">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20</div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                        <div class="day">29</div>
+                        <div class="day">30</div>
+                        <div class="day">31</div>
+                        <div class="day"></div>
+                        <div class="day"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="secrightcont">
+                <div class="artlikes">
+                    <div class="header">
+                        <h2 class="likes">Likes</h2>
+                    </div>
+                    <div class="names">
+                        <!-- <div class="name2"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+     
+            //likes
+            document.querySelectorAll('.like-icon').forEach(icon => {
+                icon.addEventListener('click', function () {
+                    const artistName = this.closest('li').querySelector('.artist-name').textContent;
+                    this.classList.toggle('liked');
+                    if (this.classList.contains('liked')) {
+                        this.classList.remove('fa-heart');
+                        this.classList.add('fa-solid', 'fa-heart');
+                        addLike(artistName);
+                    } else {
+                        this.classList.remove('fa-solid', 'fa-heart');
+                        this.classList.add('fa-heart');
+                        removeLike(artistName);
+                    }
+                });
+            });
+            function addLike(artistName) {
+                const likesContainer = document.querySelector('.artlikes');
+                const artistItem = document.createElement('button');
+                artistItem.textContent = artistName;
+                artistItem.className = 'names'; // Set the class to 'names'
+                likesContainer.appendChild(artistItem);
+            }
+            function removeLike(artistName) {
+                const likesContainer = document.querySelector('.artlikes');
+                const items = likesContainer.querySelectorAll('button.names'); // Change to select buttons
+                items.forEach(item => {
+                    if (item.textContent === artistName) {
+                        likesContainer.removeChild(item);
+                    }
+                });
+            }
+   
+            const images = document.querySelectorAll('.asciidiv img');
+            let currentIndex = 0;
+            function showNextImage() {
+                images.forEach((img, index) => {
+                    img.style.display = (index === currentIndex) ? 'block' : 'none'; // Show current image
+                });
+                currentIndex = (currentIndex + 1) % images.length; // Move to next index
+            }
+            // Show the first image initially
+            showNextImage();
+            // Change image every 3 seconds
+            setInterval(showNextImage, 2000);
+        </script>
+    </div>
+</body>
+</html>
